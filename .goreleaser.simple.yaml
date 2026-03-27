@@ -1,0 +1,19 @@
+project_name: go-vue-admin-starter
+
+builds:
+  - id: admin-starter-server
+    binary: admin-starter-server
+    dir: backend
+    main: ./cmd/server
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+    goarch:
+      - amd64
+
+archives:
+  - builds:
+      - admin-starter-server
+    format: tar.gz
+    name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"

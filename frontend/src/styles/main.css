@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Manrope", "PingFang SC", sans-serif;
+  background: #f8fafc;
+  color: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/70 bg-white/85 backdrop-blur-xl;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+  }
+
+  .card {
+    @apply rounded-2xl border border-gray-200 bg-white;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+  }
+
+  .section-card {
+    @apply card p-6;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold text-gray-900;
+  }
+
+  .section-eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.24em] text-primary-600;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200;
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-600 text-white hover:bg-primary-700;
+  }
+
+  .btn-secondary {
+    @apply btn border border-gray-200 bg-white text-gray-700 hover:bg-gray-50;
+  }
+
+  .btn-danger-text {
+    @apply text-sm font-medium text-rose-600 transition hover:text-rose-700 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .action-link {
+    @apply text-sm font-medium text-primary-600 transition hover:text-primary-700;
+  }
+
+  .ui-input,
+  .ui-select,
+  .ui-textarea {
+    @apply w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 transition-all duration-200;
+    @apply placeholder:text-gray-400 focus:border-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20;
+    @apply disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400;
+  }
+
+  .ui-checkbox-row {
+    @apply flex items-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-600;
+  }
+
+  .form-panel {
+    @apply rounded-2xl border border-gray-200 bg-gray-50 p-5;
+  }
+
+  .table-card {
+    @apply overflow-hidden rounded-2xl border border-gray-200 bg-white;
+  }
+
+  .table-shell {
+    @apply min-w-full text-sm;
+  }
+
+  .table-shell thead {
+    @apply bg-gray-50 text-left text-xs uppercase tracking-[0.18em] text-gray-500;
+  }
+
+  .table-shell th {
+    @apply px-4 py-3 font-semibold;
+  }
+
+  .table-shell tbody {
+    @apply divide-y divide-gray-200 bg-white text-gray-700;
+  }
+
+  .table-shell td {
+    @apply px-4 py-4 align-top;
+  }
+
+  .stat-card {
+    @apply card p-5;
+  }
+
+  .stat-card-label {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-gray-500;
+  }
+
+  .stat-card-value {
+    @apply mt-3 text-3xl font-semibold text-gray-900;
+  }
+
+  .stat-card-description {
+    @apply mt-2 text-sm text-gray-500;
+  }
+
+  .nav-shell {
+    @apply flex h-full w-full flex-col bg-white;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-600 transition-all duration-150 hover:bg-gray-50 hover:text-gray-900;
+  }
+
+  .nav-link-active {
+    @apply border border-primary-100 bg-primary-50 text-primary-700;
+  }
+
+  .nav-icon {
+    @apply flex h-9 w-9 items-center justify-center rounded-xl bg-gray-100 text-xs font-semibold uppercase text-gray-500;
+  }
+
+  .topbar-shell {
+    @apply glass sticky top-4 z-10 flex flex-col gap-4 rounded-2xl px-5 py-4 md:flex-row md:items-center md:justify-between;
+  }
+
+  .topbar-chip {
+    @apply rounded-xl border border-gray-200 bg-gray-50 px-3 py-1.5 text-right;
+  }
+
+  .empty-state-card {
+    @apply card max-w-xl p-8 text-center;
+  }
+}
+
+@keyframes loading {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(140%); }
+  100% { transform: translateX(320%); }
+}
+
+.toast-enter-active,
+.toast-leave-active {
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.toast-enter-from,
+.toast-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
