@@ -27,6 +27,63 @@ var (
 		Columns:    AuditLogsColumns,
 		PrimaryKey: []*schema.Column{AuditLogsColumns[0]},
 	}
+	// ConversationsColumns holds the columns for the "conversations" table.
+	ConversationsColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "updated_at", Type: field.TypeTime},
+		{Name: "ticket_no", Type: field.TypeString, Unique: true},
+		{Name: "subject", Type: field.TypeString},
+		{Name: "preview", Type: field.TypeString, Default: ""},
+		{Name: "channel", Type: field.TypeString, Default: "Web Chat"},
+		{Name: "queue", Type: field.TypeString, Default: "General Queue"},
+		{Name: "assignee", Type: field.TypeString, Default: ""},
+		{Name: "status", Type: field.TypeString, Default: "waiting"},
+		{Name: "priority", Type: field.TypeString, Default: "medium"},
+		{Name: "unread", Type: field.TypeInt, Default: 0},
+		{Name: "sla", Type: field.TypeString, Default: ""},
+		{Name: "customer_name", Type: field.TypeString},
+		{Name: "customer_company", Type: field.TypeString, Default: ""},
+		{Name: "customer_contact", Type: field.TypeString, Default: ""},
+		{Name: "customer_tags", Type: field.TypeJSON},
+		{Name: "customer_presence", Type: field.TypeString, Default: "offline"},
+		{Name: "customer_tier", Type: field.TypeString, Default: "standard"},
+		{Name: "last_order", Type: field.TypeString, Default: ""},
+		{Name: "open_tickets", Type: field.TypeInt, Default: 0},
+		{Name: "satisfaction", Type: field.TypeString, Default: ""},
+		{Name: "last_active_at", Type: field.TypeTime},
+		{Name: "closed_at", Type: field.TypeTime, Nullable: true},
+	}
+	// ConversationsTable holds the schema information for the "conversations" table.
+	ConversationsTable = &schema.Table{
+		Name:       "conversations",
+		Columns:    ConversationsColumns,
+		PrimaryKey: []*schema.Column{ConversationsColumns[0]},
+	}
+	// ConversationMessagesColumns holds the columns for the "conversation_messages" table.
+	ConversationMessagesColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt, Increment: true},
+		{Name: "actor", Type: field.TypeString, Default: ""},
+		{Name: "actor_type", Type: field.TypeString, Default: "agent"},
+		{Name: "message_type", Type: field.TypeString, Default: "message"},
+		{Name: "content", Type: field.TypeString, Default: ""},
+		{Name: "created_at", Type: field.TypeTime},
+		{Name: "conversation_id", Type: field.TypeInt},
+	}
+	// ConversationMessagesTable holds the schema information for the "conversation_messages" table.
+	ConversationMessagesTable = &schema.Table{
+		Name:       "conversation_messages",
+		Columns:    ConversationMessagesColumns,
+		PrimaryKey: []*schema.Column{ConversationMessagesColumns[0]},
+		ForeignKeys: []*schema.ForeignKey{
+			{
+				Symbol:     "conversation_messages_conversations_messages",
+				Columns:    []*schema.Column{ConversationMessagesColumns[6]},
+				RefColumns: []*schema.Column{ConversationsColumns[0]},
+				OnDelete:   schema.NoAction,
+			},
+		},
+	}
 	// MenusColumns holds the columns for the "menus" table.
 	MenusColumns = []*schema.Column{
 		{Name: "id", Type: field.TypeInt, Increment: true},
@@ -120,6 +177,8 @@ var (
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
 		AuditLogsTable,
+		ConversationsTable,
+		ConversationMessagesTable,
 		MenusTable,
 		RolesTable,
 		SystemConfigsTable,
@@ -128,6 +187,7 @@ var (
 )
 
 func init() {
+	ConversationMessagesTable.ForeignKeys[0].RefTable = ConversationsTable
 	MenusTable.ForeignKeys[0].RefTable = MenusTable
 	UsersTable.ForeignKeys[0].RefTable = RolesTable
 }

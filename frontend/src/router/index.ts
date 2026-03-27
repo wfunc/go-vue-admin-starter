@@ -30,6 +30,52 @@ const router = createRouter({
           meta: { titleKey: 'routes.dashboard', permission: 'dashboard:view' }
         },
         {
+          path: 'customer-service',
+          redirect: '/customer-service/dashboard'
+        },
+        {
+          path: 'customer-service/dashboard',
+          name: 'cs-dashboard',
+          component: () => import('@/views/customer-service/dashboard/CustomerServiceDashboardView.vue'),
+          meta: { titleKey: 'routes.csDashboard', permission: 'cs_dashboard:view' }
+        },
+        {
+          path: 'customer-service/conversations',
+          name: 'conversations',
+          component: () => import('@/views/customer-service/conversation/ConversationCenterView.vue'),
+          meta: { titleKey: 'routes.conversations', permission: 'conversation:view' }
+        },
+        {
+          path: 'customer-service/customers',
+          name: 'customers',
+          component: () => import('@/views/customer-service/customer/CustomerListView.vue'),
+          meta: { titleKey: 'routes.customers', permission: 'customer:view' }
+        },
+        {
+          path: 'customer-service/tickets',
+          name: 'tickets',
+          component: () => import('@/views/customer-service/ticket/TicketListView.vue'),
+          meta: { titleKey: 'routes.tickets', permission: 'ticket:view' }
+        },
+        {
+          path: 'customer-service/categories',
+          name: 'ticket-categories',
+          component: () => import('@/views/customer-service/category/TicketCategoryView.vue'),
+          meta: { titleKey: 'routes.ticketCategories', permission: 'ticket_category:view' }
+        },
+        {
+          path: 'customer-service/quick-replies',
+          name: 'quick-replies',
+          component: () => import('@/views/customer-service/quick-reply/QuickReplyView.vue'),
+          meta: { titleKey: 'routes.quickReplies', permission: 'quick_reply:view' }
+        },
+        {
+          path: 'customer-service/knowledge',
+          name: 'knowledge-articles',
+          component: () => import('@/views/customer-service/knowledge/KnowledgeArticleView.vue'),
+          meta: { titleKey: 'routes.knowledgeArticles', permission: 'knowledge:view' }
+        },
+        {
           path: 'profile',
           name: 'profile',
           component: () => import('@/views/user/ProfileView.vue'),

@@ -8,9 +8,10 @@ import (
 	"time"
 
 	appauth "github.com/Wei-Shaw/sub2api/internal/auth"
-	authhandler "github.com/Wei-Shaw/sub2api/internal/domain/auth/handler"
 	audithandler "github.com/Wei-Shaw/sub2api/internal/domain/audit/handler"
 	auditservice "github.com/Wei-Shaw/sub2api/internal/domain/audit/service"
+	authhandler "github.com/Wei-Shaw/sub2api/internal/domain/auth/handler"
+	conversationhandler "github.com/Wei-Shaw/sub2api/internal/domain/conversation/handler"
 	menuhandler "github.com/Wei-Shaw/sub2api/internal/domain/menu/handler"
 	rolehandler "github.com/Wei-Shaw/sub2api/internal/domain/role/handler"
 	systemhandler "github.com/Wei-Shaw/sub2api/internal/domain/system/handler"
@@ -24,19 +25,20 @@ import (
 )
 
 type RouterParams struct {
-	Mode          string
-	AllowedOrigins []string
-	Logger        *slog.Logger
-	SQLDB         *sql.DB
-	Redis         *redis.Client
-	JWT           *appauth.Manager
-	AuditService  *auditservice.Service
-	AuthHandler   *authhandler.Handler
-	UserHandler   *userhandler.Handler
-	RoleHandler   *rolehandler.Handler
-	MenuHandler   *menuhandler.Handler
-	SystemHandler *systemhandler.Handler
-	AuditHandler  *audithandler.Handler
+	Mode                string
+	AllowedOrigins      []string
+	Logger              *slog.Logger
+	SQLDB               *sql.DB
+	Redis               *redis.Client
+	JWT                 *appauth.Manager
+	AuditService        *auditservice.Service
+	AuthHandler         *authhandler.Handler
+	UserHandler         *userhandler.Handler
+	RoleHandler         *rolehandler.Handler
+	MenuHandler         *menuhandler.Handler
+	SystemHandler       *systemhandler.Handler
+	AuditHandler        *audithandler.Handler
+	ConversationHandler *conversationhandler.Handler
 }
 
 func New(params RouterParams) *gin.Engine {
@@ -100,6 +102,14 @@ func New(params RouterParams) *gin.Engine {
 
 	audits := protected.Group("/audit-logs")
 	audits.GET("", middleware.RequirePermission("audit_log:view"), params.AuditHandler.List)
+
+	conversations := protected.Group("/conversations")
+	conversations.GET("", middleware.RequirePermission("conversation:view"), params.ConversationHandler.List)
+	conversations.GET("/summary", middleware.RequirePermission("conversation:view"), params.ConversationHandler.Summary)
+	conversations.GET(":id", middleware.RequirePermission("conversation:view"), params.ConversationHandler.Get)
+	conversations.POST(":id/reply", middleware.RequirePermission("conversation:reply"), params.ConversationHandler.Reply)
+	conversations.POST(":id/transfer", middleware.RequirePermission("conversation:transfer"), params.ConversationHandler.Transfer)
+	conversations.POST(":id/resolve", middleware.RequirePermission("conversation:resolve"), params.ConversationHandler.Resolve)
 
 	return router
 }

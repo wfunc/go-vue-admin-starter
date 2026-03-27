@@ -6,6 +6,8 @@ import (
 	"time"
 
 	"github.com/Wei-Shaw/sub2api/ent/auditlog"
+	"github.com/Wei-Shaw/sub2api/ent/conversation"
+	"github.com/Wei-Shaw/sub2api/ent/conversationmessage"
 	"github.com/Wei-Shaw/sub2api/ent/menu"
 	"github.com/Wei-Shaw/sub2api/ent/role"
 	"github.com/Wei-Shaw/sub2api/ent/schema"
@@ -55,6 +57,123 @@ func init() {
 	auditlogDescCreatedAt := auditlogFields[8].Descriptor()
 	// auditlog.DefaultCreatedAt holds the default value on creation for the created_at field.
 	auditlog.DefaultCreatedAt = auditlogDescCreatedAt.Default.(func() time.Time)
+	conversationMixin := schema.Conversation{}.Mixin()
+	conversationMixinFields0 := conversationMixin[0].Fields()
+	_ = conversationMixinFields0
+	conversationFields := schema.Conversation{}.Fields()
+	_ = conversationFields
+	// conversationDescCreatedAt is the schema descriptor for created_at field.
+	conversationDescCreatedAt := conversationMixinFields0[0].Descriptor()
+	// conversation.DefaultCreatedAt holds the default value on creation for the created_at field.
+	conversation.DefaultCreatedAt = conversationDescCreatedAt.Default.(func() time.Time)
+	// conversationDescUpdatedAt is the schema descriptor for updated_at field.
+	conversationDescUpdatedAt := conversationMixinFields0[1].Descriptor()
+	// conversation.DefaultUpdatedAt holds the default value on creation for the updated_at field.
+	conversation.DefaultUpdatedAt = conversationDescUpdatedAt.Default.(func() time.Time)
+	// conversation.UpdateDefaultUpdatedAt holds the default value on update for the updated_at field.
+	conversation.UpdateDefaultUpdatedAt = conversationDescUpdatedAt.UpdateDefault.(func() time.Time)
+	// conversationDescTicketNo is the schema descriptor for ticket_no field.
+	conversationDescTicketNo := conversationFields[0].Descriptor()
+	// conversation.TicketNoValidator is a validator for the "ticket_no" field. It is called by the builders before save.
+	conversation.TicketNoValidator = conversationDescTicketNo.Validators[0].(func(string) error)
+	// conversationDescSubject is the schema descriptor for subject field.
+	conversationDescSubject := conversationFields[1].Descriptor()
+	// conversation.SubjectValidator is a validator for the "subject" field. It is called by the builders before save.
+	conversation.SubjectValidator = conversationDescSubject.Validators[0].(func(string) error)
+	// conversationDescPreview is the schema descriptor for preview field.
+	conversationDescPreview := conversationFields[2].Descriptor()
+	// conversation.DefaultPreview holds the default value on creation for the preview field.
+	conversation.DefaultPreview = conversationDescPreview.Default.(string)
+	// conversationDescChannel is the schema descriptor for channel field.
+	conversationDescChannel := conversationFields[3].Descriptor()
+	// conversation.DefaultChannel holds the default value on creation for the channel field.
+	conversation.DefaultChannel = conversationDescChannel.Default.(string)
+	// conversationDescQueue is the schema descriptor for queue field.
+	conversationDescQueue := conversationFields[4].Descriptor()
+	// conversation.DefaultQueue holds the default value on creation for the queue field.
+	conversation.DefaultQueue = conversationDescQueue.Default.(string)
+	// conversationDescAssignee is the schema descriptor for assignee field.
+	conversationDescAssignee := conversationFields[5].Descriptor()
+	// conversation.DefaultAssignee holds the default value on creation for the assignee field.
+	conversation.DefaultAssignee = conversationDescAssignee.Default.(string)
+	// conversationDescStatus is the schema descriptor for status field.
+	conversationDescStatus := conversationFields[6].Descriptor()
+	// conversation.DefaultStatus holds the default value on creation for the status field.
+	conversation.DefaultStatus = conversationDescStatus.Default.(string)
+	// conversationDescPriority is the schema descriptor for priority field.
+	conversationDescPriority := conversationFields[7].Descriptor()
+	// conversation.DefaultPriority holds the default value on creation for the priority field.
+	conversation.DefaultPriority = conversationDescPriority.Default.(string)
+	// conversationDescUnread is the schema descriptor for unread field.
+	conversationDescUnread := conversationFields[8].Descriptor()
+	// conversation.DefaultUnread holds the default value on creation for the unread field.
+	conversation.DefaultUnread = conversationDescUnread.Default.(int)
+	// conversationDescSLA is the schema descriptor for sla field.
+	conversationDescSLA := conversationFields[9].Descriptor()
+	// conversation.DefaultSLA holds the default value on creation for the sla field.
+	conversation.DefaultSLA = conversationDescSLA.Default.(string)
+	// conversationDescCustomerName is the schema descriptor for customer_name field.
+	conversationDescCustomerName := conversationFields[10].Descriptor()
+	// conversation.CustomerNameValidator is a validator for the "customer_name" field. It is called by the builders before save.
+	conversation.CustomerNameValidator = conversationDescCustomerName.Validators[0].(func(string) error)
+	// conversationDescCustomerCompany is the schema descriptor for customer_company field.
+	conversationDescCustomerCompany := conversationFields[11].Descriptor()
+	// conversation.DefaultCustomerCompany holds the default value on creation for the customer_company field.
+	conversation.DefaultCustomerCompany = conversationDescCustomerCompany.Default.(string)
+	// conversationDescCustomerContact is the schema descriptor for customer_contact field.
+	conversationDescCustomerContact := conversationFields[12].Descriptor()
+	// conversation.DefaultCustomerContact holds the default value on creation for the customer_contact field.
+	conversation.DefaultCustomerContact = conversationDescCustomerContact.Default.(string)
+	// conversationDescCustomerTags is the schema descriptor for customer_tags field.
+	conversationDescCustomerTags := conversationFields[13].Descriptor()
+	// conversation.DefaultCustomerTags holds the default value on creation for the customer_tags field.
+	conversation.DefaultCustomerTags = conversationDescCustomerTags.Default.([]string)
+	// conversationDescCustomerPresence is the schema descriptor for customer_presence field.
+	conversationDescCustomerPresence := conversationFields[14].Descriptor()
+	// conversation.DefaultCustomerPresence holds the default value on creation for the customer_presence field.
+	conversation.DefaultCustomerPresence = conversationDescCustomerPresence.Default.(string)
+	// conversationDescCustomerTier is the schema descriptor for customer_tier field.
+	conversationDescCustomerTier := conversationFields[15].Descriptor()
+	// conversation.DefaultCustomerTier holds the default value on creation for the customer_tier field.
+	conversation.DefaultCustomerTier = conversationDescCustomerTier.Default.(string)
+	// conversationDescLastOrder is the schema descriptor for last_order field.
+	conversationDescLastOrder := conversationFields[16].Descriptor()
+	// conversation.DefaultLastOrder holds the default value on creation for the last_order field.
+	conversation.DefaultLastOrder = conversationDescLastOrder.Default.(string)
+	// conversationDescOpenTickets is the schema descriptor for open_tickets field.
+	conversationDescOpenTickets := conversationFields[17].Descriptor()
+	// conversation.DefaultOpenTickets holds the default value on creation for the open_tickets field.
+	conversation.DefaultOpenTickets = conversationDescOpenTickets.Default.(int)
+	// conversationDescSatisfaction is the schema descriptor for satisfaction field.
+	conversationDescSatisfaction := conversationFields[18].Descriptor()
+	// conversation.DefaultSatisfaction holds the default value on creation for the satisfaction field.
+	conversation.DefaultSatisfaction = conversationDescSatisfaction.Default.(string)
+	// conversationDescLastActiveAt is the schema descriptor for last_active_at field.
+	conversationDescLastActiveAt := conversationFields[19].Descriptor()
+	// conversation.DefaultLastActiveAt holds the default value on creation for the last_active_at field.
+	conversation.DefaultLastActiveAt = conversationDescLastActiveAt.Default.(func() time.Time)
+	conversationmessageFields := schema.ConversationMessage{}.Fields()
+	_ = conversationmessageFields
+	// conversationmessageDescActor is the schema descriptor for actor field.
+	conversationmessageDescActor := conversationmessageFields[1].Descriptor()
+	// conversationmessage.DefaultActor holds the default value on creation for the actor field.
+	conversationmessage.DefaultActor = conversationmessageDescActor.Default.(string)
+	// conversationmessageDescActorType is the schema descriptor for actor_type field.
+	conversationmessageDescActorType := conversationmessageFields[2].Descriptor()
+	// conversationmessage.DefaultActorType holds the default value on creation for the actor_type field.
+	conversationmessage.DefaultActorType = conversationmessageDescActorType.Default.(string)
+	// conversationmessageDescMessageType is the schema descriptor for message_type field.
+	conversationmessageDescMessageType := conversationmessageFields[3].Descriptor()
+	// conversationmessage.DefaultMessageType holds the default value on creation for the message_type field.
+	conversationmessage.DefaultMessageType = conversationmessageDescMessageType.Default.(string)
+	// conversationmessageDescContent is the schema descriptor for content field.
+	conversationmessageDescContent := conversationmessageFields[4].Descriptor()
+	// conversationmessage.DefaultContent holds the default value on creation for the content field.
+	conversationmessage.DefaultContent = conversationmessageDescContent.Default.(string)
+	// conversationmessageDescCreatedAt is the schema descriptor for created_at field.
+	conversationmessageDescCreatedAt := conversationmessageFields[5].Descriptor()
+	// conversationmessage.DefaultCreatedAt holds the default value on creation for the created_at field.
+	conversationmessage.DefaultCreatedAt = conversationmessageDescCreatedAt.Default.(func() time.Time)
 	menuMixin := schema.Menu{}.Mixin()
 	menuMixinFields0 := menuMixin[0].Fields()
 	_ = menuMixinFields0

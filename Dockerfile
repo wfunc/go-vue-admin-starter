@@ -14,7 +14,7 @@ WORKDIR /app
 COPY --from=builder /app/server /app/server
 COPY deploy/docker-entrypoint.sh /app/docker-entrypoint.sh
 RUN chmod +x /app/docker-entrypoint.sh && mkdir -p /app/data && chown -R app:app /app
-EXPOSE 8080
-HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD wget -q -O /dev/null http://localhost:8080/healthz || exit 1
+EXPOSE 18080
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 CMD wget -q -O /dev/null http://localhost:18080/healthz || exit 1
 ENTRYPOINT ["/app/docker-entrypoint.sh"]
 CMD ["/app/server"]

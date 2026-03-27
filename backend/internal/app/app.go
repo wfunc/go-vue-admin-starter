@@ -6,11 +6,15 @@ import (
 	"net/http"
 
 	"github.com/Wei-Shaw/sub2api/internal/auth"
-	authhandler "github.com/Wei-Shaw/sub2api/internal/domain/auth/handler"
-	authservice "github.com/Wei-Shaw/sub2api/internal/domain/auth/service"
+	"github.com/Wei-Shaw/sub2api/internal/config"
 	audithandler "github.com/Wei-Shaw/sub2api/internal/domain/audit/handler"
 	auditrepository "github.com/Wei-Shaw/sub2api/internal/domain/audit/repository"
 	auditservice "github.com/Wei-Shaw/sub2api/internal/domain/audit/service"
+	authhandler "github.com/Wei-Shaw/sub2api/internal/domain/auth/handler"
+	authservice "github.com/Wei-Shaw/sub2api/internal/domain/auth/service"
+	conversationhandler "github.com/Wei-Shaw/sub2api/internal/domain/conversation/handler"
+	conversationrepository "github.com/Wei-Shaw/sub2api/internal/domain/conversation/repository"
+	conversationservice "github.com/Wei-Shaw/sub2api/internal/domain/conversation/service"
 	menuhandler "github.com/Wei-Shaw/sub2api/internal/domain/menu/handler"
 	menurepository "github.com/Wei-Shaw/sub2api/internal/domain/menu/repository"
 	menuservice "github.com/Wei-Shaw/sub2api/internal/domain/menu/service"
@@ -27,7 +31,6 @@ import (
 	"github.com/Wei-Shaw/sub2api/internal/infrastructure/db"
 	"github.com/Wei-Shaw/sub2api/internal/pkg/logger"
 	"github.com/Wei-Shaw/sub2api/internal/server"
-	"github.com/Wei-Shaw/sub2api/internal/config"
 	"github.com/redis/go-redis/v9"
 )
 
@@ -60,28 +63,31 @@ func New(cfg *config.Config) (*App, error) {
 	menuRepo := menurepository.New(store.Ent)
 	auditRepo := auditrepository.New(store.Ent)
 	systemRepo := systemrepository.New(store.Ent)
+	conversationRepo := conversationrepository.New(store.Ent)
 
 	userSvc := userservice.New(userRepo)
 	roleSvc := roleservice.New(roleRepo)
 	menuSvc := menuservice.New(menuRepo)
 	auditSvc := auditservice.New(auditRepo)
+	conversationSvc := conversationservice.New(conversationRepo)
 	systemSvc := systemservice.New(systemRepo, userSvc, roleSvc, menuSvc, auditSvc)
 	authSvc := authservice.New(userSvc, roleSvc, menuSvc, jwtManager)
 
 	params := server.RouterParams{
-		Mode:           cfg.Server.Mode,
-		AllowedOrigins: cfg.CORS.AllowedOrigins,
-		Logger:         appLogger,
-		SQLDB:          store.SQL,
-		Redis:          redisClient,
-		JWT:            jwtManager,
-		AuditService:   auditSvc,
-		AuthHandler:    authhandler.New(authSvc),
-		UserHandler:    userhandler.New(userSvc),
-		RoleHandler:    rolehandler.New(roleSvc),
-		MenuHandler:    menuhandler.New(menuSvc),
-		SystemHandler:  systemhandler.New(systemSvc),
-		AuditHandler:   audithandler.New(auditSvc),
+		Mode:                cfg.Server.Mode,
+		AllowedOrigins:      cfg.CORS.AllowedOrigins,
+		Logger:              appLogger,
+		SQLDB:               store.SQL,
+		Redis:               redisClient,
+		JWT:                 jwtManager,
+		AuditService:        auditSvc,
+		AuthHandler:         authhandler.New(authSvc),
+		UserHandler:         userhandler.New(userSvc),
+		RoleHandler:         rolehandler.New(roleSvc),
+		MenuHandler:         menuhandler.New(menuSvc),
+		SystemHandler:       systemhandler.New(systemSvc),
+		AuditHandler:        audithandler.New(auditSvc),
+		ConversationHandler: conversationhandler.New(conversationSvc),
 	}
 
 	return &App{
@@ -129,6 +135,10 @@ func (a *App) Shutdown(ctx context.Context) error {
 }
 
 func (a *App) Close() {
-	if a.Redis != nil { _ = a.Redis.Close() }
-	if a.Store != nil { _ = a.Store.Close() }
+	if a.Redis != nil {
+		_ = a.Redis.Close()
+	}
+	if a.Store != nil {
+		_ = a.Store.Close()
+	}
 }

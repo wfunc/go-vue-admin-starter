@@ -14,6 +14,10 @@ type Tx struct {
 	config
 	// AuditLog is the client for interacting with the AuditLog builders.
 	AuditLog *AuditLogClient
+	// Conversation is the client for interacting with the Conversation builders.
+	Conversation *ConversationClient
+	// ConversationMessage is the client for interacting with the ConversationMessage builders.
+	ConversationMessage *ConversationMessageClient
 	// Menu is the client for interacting with the Menu builders.
 	Menu *MenuClient
 	// Role is the client for interacting with the Role builders.
@@ -154,6 +158,8 @@ func (tx *Tx) Client() *Client {
 
 func (tx *Tx) init() {
 	tx.AuditLog = NewAuditLogClient(tx.config)
+	tx.Conversation = NewConversationClient(tx.config)
+	tx.ConversationMessage = NewConversationMessageClient(tx.config)
 	tx.Menu = NewMenuClient(tx.config)
 	tx.Role = NewRoleClient(tx.config)
 	tx.SystemConfig = NewSystemConfigClient(tx.config)

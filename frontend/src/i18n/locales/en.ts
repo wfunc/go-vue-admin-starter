@@ -26,6 +26,14 @@ const en = {
   },
   nav: {
     dashboard: 'Dashboard',
+    customerService: 'Customer Service',
+    csDashboard: 'Workbench',
+    conversations: 'Conversations',
+    customers: 'Customers',
+    tickets: 'Tickets',
+    ticketCategories: 'Categories',
+    quickReplies: 'Quick Replies',
+    knowledgeArticles: 'Knowledge Base',
     system: 'System',
     users: 'Users',
     roles: 'Roles',
@@ -36,6 +44,7 @@ const en = {
   },
   section: {
     dashboard: 'Dashboard',
+    customerService: 'Customer Service',
     system: 'System',
     user: 'User',
     account: 'Account',
@@ -44,6 +53,13 @@ const en = {
   routes: {
     login: 'Login',
     dashboard: 'Dashboard',
+    csDashboard: 'Customer Service Workbench',
+    conversations: 'Conversation Center',
+    customers: 'Customer Management',
+    tickets: 'Ticket Management',
+    ticketCategories: 'Ticket Categories',
+    quickReplies: 'Quick Replies',
+    knowledgeArticles: 'Knowledge Base',
     profile: 'Profile',
     users: 'User Management',
     roles: 'Role Management',
@@ -243,6 +259,179 @@ const en = {
       request: 'Request',
       status: 'Status',
       time: 'Time'
+    }
+  },
+  customerService: {
+    dashboard: {
+      eyebrow: 'Customer Service',
+      title: 'Service Workbench',
+      description: 'A first-phase demo workspace built on the starter framework for ticket operations, agent efficiency, and service insights.',
+      cards: {
+        newTickets: 'New Today',
+        pendingTickets: 'Pending',
+        processingTickets: 'In Progress',
+        resolvedTickets: 'Resolved',
+        urgentTickets: 'Urgent',
+        satisfaction: 'Satisfaction'
+      },
+      cardDescriptions: {
+        waiting: 'Waiting for first response',
+        processing: 'Assigned to agents',
+        onlineAgents: 'Agents online now',
+        resolved: 'Closed today',
+        risk: 'Need manual attention',
+        transfers: 'Recent transfer records'
+      },
+      panels: {
+        myQueue: 'My Queue',
+        recent: 'Recent Updates',
+        focus: 'Operational Focus',
+        agentStatus: 'Agent Status',
+        agentDescription: 'Track active shifts, online agents, and current workload.'
+      },
+      activeLoad: 'Active load'
+    },
+    customers: {
+      eyebrow: 'Customer Service',
+      title: 'Customer Management',
+      description: 'Keep customer profiles, sources, contact channels, and latest service context in one reusable admin list layout.',
+      newCustomer: 'New Customer',
+      columns: {
+        name: 'Customer',
+        source: 'Source',
+        owner: 'Owner',
+        status: 'Status',
+        lastTicket: 'Latest Ticket'
+      }
+    },
+    conversations: {
+      eyebrow: 'Customer Service',
+      title: 'Conversation Center',
+      description: 'Build the agent conversation workspace on top of the existing starter layout, including queue, timeline, customer sidebar, and operator actions.',
+      cards: {
+        waiting: 'Waiting Queue',
+        active: 'In Progress',
+        slaRisk: 'SLA Risk',
+        resolved: 'Closed Today'
+      },
+      cardDescriptions: {
+        waiting: 'Waiting for first response',
+        active: 'Handled by assigned agents',
+        risk: 'Need manual follow-up',
+        resolved: 'Closed in the last 24 hours'
+      },
+      queueTitle: 'Conversation Queue',
+      queueDescription: 'Select a conversation to inspect messages, customer context, and recent handling steps.',
+      detailTitle: 'Conversation Detail',
+      detailDescription: 'This page is currently driven by frontend demo data so the workspace interaction and information architecture can be validated first.',
+      profileTitle: 'Customer Sidebar',
+      profileDescription: 'Show contact status, tags, history, and current handling actions in one place.',
+      filters: {
+        all: 'All',
+        waiting: 'Waiting',
+        processing: 'In Progress',
+        vip: 'VIP'
+      },
+      labels: {
+        channel: 'Channel',
+        assignee: 'Assignee',
+        priority: 'Priority',
+        sla: 'SLA',
+        queue: 'Queue',
+        tags: 'Tags',
+        lastOrder: 'Last Order',
+        openTickets: 'Open Tickets',
+        satisfaction: 'Satisfaction',
+        contact: 'Contact',
+        history: 'Recent Activity',
+        actions: 'Conversation Actions',
+        notes: 'Internal Note'
+      },
+      composer: {
+        placeholder: 'Type a reply here or insert a quick reply before sending',
+        send: 'Send Reply',
+        internalNote: 'Save as internal note',
+        transfer: 'Transfer',
+        resolve: 'Close Conversation',
+        shortcuts: 'Quick Replies',
+        greetingLabel: 'Greeting',
+        updateLabel: 'Progress',
+        escalationLabel: 'Escalation'
+      },
+      empty: 'No conversations matched the current filter',
+      quickReplies: {
+        greeting: 'We have received your issue and I am checking it for you now.',
+        investigate: 'The issue is under investigation and I will update you within 15 minutes.',
+        escalation: 'This needs second-line support. I will transfer it and continue tracking the result.'
+      },
+      events: {
+        transferredTitle: 'Transferred to second-line support',
+        transferredDescription: 'This demo simulates escalating the conversation to the second-line support queue.',
+        resolvedTitle: 'Conversation closed',
+        resolvedDescription: 'The agent ended the current conversation and triggered the follow-up survey flow.',
+        internalNoteAuthor: 'Internal Note',
+        closedPreview: 'Conversation closed and waiting for follow-up survey'
+      }
+    },
+    tickets: {
+      eyebrow: 'Customer Service',
+      title: 'Ticket Management',
+      description: 'Track incoming issues, priorities, agents, and SLA-sensitive workload with the same starter list and filter pattern.',
+      createTicket: 'Create Ticket',
+      columns: {
+        no: 'Ticket No.',
+        subject: 'Subject',
+        customer: 'Customer',
+        priority: 'Priority',
+        status: 'Status',
+        assignee: 'Assignee'
+      }
+    },
+    categories: {
+      eyebrow: 'Customer Service',
+      title: 'Ticket Categories',
+      description: 'Maintain reusable issue classifications for routing, reporting, and future automation.',
+      newCategory: 'New Category'
+    },
+    quickReplies: {
+      eyebrow: 'Customer Service',
+      title: 'Quick Replies',
+      description: 'Prepare reusable response templates so agents can handle common requests consistently.',
+      newReply: 'New Quick Reply'
+    },
+    knowledge: {
+      eyebrow: 'Customer Service',
+      title: 'Knowledge Base',
+      description: 'Keep standard answers, SOP articles, and troubleshooting references inside the same back-office framework.',
+      newArticle: 'New Article'
+    },
+    feedback: {
+      replySuccess: 'Reply sent',
+      transferSuccess: 'Conversation transferred',
+      resolveSuccess: 'Conversation closed',
+      transferNote: 'This conversation needs second-line follow-up.',
+      resolveNote: 'The issue is complete and the follow-up survey can begin.'
+    },
+    status: {
+      active: 'Active',
+      vip: 'VIP',
+      atRisk: 'At Risk',
+      open: 'Open',
+      waiting: 'Waiting',
+      pending: 'Pending',
+      processing: 'Processing',
+      resolved: 'Resolved',
+      closed: 'Closed',
+      urgent: 'Urgent',
+      high: 'High',
+      medium: 'Medium',
+      low: 'Low',
+      online: 'Online',
+      offline: 'Offline',
+      enabled: 'Enabled',
+      disabled: 'Disabled',
+      published: 'Published',
+      draft: 'Draft'
     }
   },
   exception: {

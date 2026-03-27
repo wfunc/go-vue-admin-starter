@@ -168,7 +168,7 @@ GOTOOLCHAIN=local GOSUMDB=off go run ./cmd/server
 
 默认地址：
 
-- `http://localhost:8080`
+- `http://localhost:18080`
 - 健康检查：`GET /healthz`
 
 ### 2. 启动前端
@@ -183,7 +183,7 @@ npm run dev
 
 - `http://localhost:5173`
 
-Vite 开发服务器默认会把 `/api` 代理到 `http://localhost:8080`。
+Vite 开发服务器默认会把 `/api` 代理到 `http://localhost:18080`。
 
 ## Docker Compose 启动
 
@@ -196,7 +196,7 @@ docker compose up --build
 默认地址：
 
 - 前端：`http://localhost:5173`
-- 后端：`http://localhost:8080`
+- 后端：`http://localhost:18080`
 - PostgreSQL：`localhost:5432`
 - Redis：`localhost:6379`
 
@@ -234,7 +234,7 @@ npm run dev
 后端启动后可用以下命令检查：
 
 ```bash
-curl http://127.0.0.1:8080/healthz
+curl http://127.0.0.1:18080/healthz
 ```
 
 预期返回：

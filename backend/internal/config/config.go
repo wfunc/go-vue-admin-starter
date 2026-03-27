@@ -107,7 +107,7 @@ func setDefaults(v *viper.Viper) {
 	v.SetDefault("app.name", "go-vue-admin-starter")
 	v.SetDefault("app.env", "development")
 	v.SetDefault("server.host", "0.0.0.0")
-	v.SetDefault("server.port", 8080)
+	v.SetDefault("server.port", 18080)
 	v.SetDefault("server.mode", "debug")
 	v.SetDefault("server.read_timeout", "15s")
 	v.SetDefault("server.write_timeout", "15s")

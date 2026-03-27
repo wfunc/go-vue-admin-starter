@@ -26,6 +26,14 @@ const zh = {
   },
   nav: {
     dashboard: '仪表盘',
+    customerService: '客服中心',
+    csDashboard: '工作台',
+    conversations: '会话管理',
+    customers: '客户管理',
+    tickets: '工单管理',
+    ticketCategories: '工单分类',
+    quickReplies: '快捷回复',
+    knowledgeArticles: '知识库',
     system: '系统管理',
     users: '用户管理',
     roles: '角色管理',
@@ -36,6 +44,7 @@ const zh = {
   },
   section: {
     dashboard: 'Dashboard',
+    customerService: 'Customer Service',
     system: 'System',
     user: 'User',
     account: 'Account',
@@ -44,6 +53,13 @@ const zh = {
   routes: {
     login: '登录',
     dashboard: '仪表盘',
+    csDashboard: '客服工作台',
+    conversations: '会话管理',
+    customers: '客户管理',
+    tickets: '工单管理',
+    ticketCategories: '工单分类',
+    quickReplies: '快捷回复',
+    knowledgeArticles: '知识库',
     profile: '个人中心',
     users: '用户管理',
     roles: '角色管理',
@@ -243,6 +259,179 @@ const zh = {
       request: '请求',
       status: '状态',
       time: '时间'
+    }
+  },
+  customerService: {
+    dashboard: {
+      eyebrow: 'Customer Service',
+      title: '客服工作台',
+      description: '这是基于当前 starter 搭出的第一阶段客服 demo 工作区，用于验证工单、坐席效率和服务统计的后台承载方式。',
+      cards: {
+        newTickets: '今日新增',
+        pendingTickets: '待处理',
+        processingTickets: '处理中',
+        resolvedTickets: '已解决',
+        urgentTickets: '紧急工单',
+        satisfaction: '满意度'
+      },
+      cardDescriptions: {
+        waiting: '等待首次响应',
+        processing: '已分配坐席',
+        onlineAgents: '当前在线坐席',
+        resolved: '今日已关闭',
+        risk: '需要人工关注',
+        transfers: '最近转交流水'
+      },
+      panels: {
+        myQueue: '待我处理',
+        recent: '最近更新',
+        focus: '当前关注',
+        agentStatus: '坐席状态',
+        agentDescription: '观察接待状态、在线情况和当前承载量。'
+      },
+      activeLoad: '当前承载'
+    },
+    customers: {
+      eyebrow: 'Customer Service',
+      title: '客户管理',
+      description: '在同一套后台列表范式下维护客户档案、来源、联系方式和最近服务状态。',
+      newCustomer: '新建客户',
+      columns: {
+        name: '客户',
+        source: '来源',
+        owner: '负责人',
+        status: '状态',
+        lastTicket: '最近工单'
+      }
+    },
+    conversations: {
+      eyebrow: 'Customer Service',
+      title: '会话管理',
+      description: '按当前 starter 的后台结构搭建客服对话中心，保留会话队列、消息时间线、客户侧栏和坐席操作区，后续可直接替换成真实接口。',
+      cards: {
+        waiting: '待接入会话',
+        active: '当前处理中',
+        slaRisk: 'SLA 风险',
+        resolved: '今日已关闭'
+      },
+      cardDescriptions: {
+        waiting: '等待首次响应',
+        active: '已分配并处理中',
+        risk: '需要人工跟进',
+        resolved: '最近 24 小时关闭'
+      },
+      queueTitle: '会话队列',
+      queueDescription: '选择一个会话查看消息、客户资料和最近处理动作。',
+      detailTitle: '会话详情',
+      detailDescription: '当前为前端 demo 数据驱动，用于先确认客服工作台的交互和信息架构。',
+      profileTitle: '客户侧栏',
+      profileDescription: '展示客户等级、联系方式、标签、历史工单和当前会话动作。',
+      filters: {
+        all: '全部',
+        waiting: '待接入',
+        processing: '处理中',
+        vip: '重点客户'
+      },
+      labels: {
+        channel: '来源渠道',
+        assignee: '当前坐席',
+        priority: '优先级',
+        sla: 'SLA',
+        queue: '队列',
+        tags: '客户标签',
+        lastOrder: '最近订单',
+        openTickets: '未结工单',
+        satisfaction: '满意度',
+        contact: '联系方式',
+        history: '最近动态',
+        actions: '会话动作',
+        notes: '内部备注'
+      },
+      composer: {
+        placeholder: '输入回复内容，或插入快捷回复后再发送',
+        send: '发送回复',
+        internalNote: '作为内部备注记录',
+        transfer: '转交会话',
+        resolve: '结束会话',
+        shortcuts: '快捷回复',
+        greetingLabel: '开场确认',
+        updateLabel: '处理进度',
+        escalationLabel: '升级说明'
+      },
+      empty: '暂无匹配的会话',
+      quickReplies: {
+        greeting: '您好，这边已经收到您的问题，我先帮您核查一下。',
+        investigate: '问题已经定位到处理中，预计 15 分钟内给您回传结果。',
+        escalation: '当前需要转交到二线支持，我会继续帮您跟进直到关闭。'
+      },
+      events: {
+        transferredTitle: '已转交至二线支持',
+        transferredDescription: '当前 demo 模拟把会话升级到二线支持队列。',
+        resolvedTitle: '会话已关闭',
+        resolvedDescription: '客服已结束当前会话，并触发回访问卷流程。',
+        internalNoteAuthor: '内部备注',
+        closedPreview: '会话已结束，等待回访问卷'
+      }
+    },
+    tickets: {
+      eyebrow: 'Customer Service',
+      title: '工单管理',
+      description: '在 starter 的通用表格与状态范式上承载客服工单、优先级、负责人和 SLA 压力。',
+      createTicket: '新建工单',
+      columns: {
+        no: '工单编号',
+        subject: '主题',
+        customer: '客户',
+        priority: '优先级',
+        status: '状态',
+        assignee: '处理人'
+      }
+    },
+    categories: {
+      eyebrow: 'Customer Service',
+      title: '工单分类',
+      description: '维护统一的问题分类，用于后续分派、统计和自动化扩展。',
+      newCategory: '新建分类'
+    },
+    quickReplies: {
+      eyebrow: 'Customer Service',
+      title: '快捷回复',
+      description: '沉淀高频回复模板，让客服在同一套后台中提高处理效率和一致性。',
+      newReply: '新建回复'
+    },
+    knowledge: {
+      eyebrow: 'Customer Service',
+      title: '知识库',
+      description: '在同一套后台框架中维护 FAQ、SOP 和排障文档，作为客服知识沉淀演示模块。',
+      newArticle: '新建文章'
+    },
+    feedback: {
+      replySuccess: '回复已发送',
+      transferSuccess: '会话已转交',
+      resolveSuccess: '会话已结束',
+      transferNote: '当前会话需要二线支持跟进。',
+      resolveNote: '本次问题已处理完成，进入回访问卷。'
+    },
+    status: {
+      active: '活跃',
+      vip: '重点客户',
+      atRisk: '风险客户',
+      open: '待接入',
+      waiting: '待接入',
+      pending: '待处理',
+      processing: '处理中',
+      resolved: '已解决',
+      closed: '已关闭',
+      urgent: '紧急',
+      high: '高',
+      medium: '中',
+      low: '低',
+      online: '在线',
+      offline: '离线',
+      enabled: '启用',
+      disabled: '停用',
+      published: '已发布',
+      draft: '草稿'
     }
   },
   exception: {

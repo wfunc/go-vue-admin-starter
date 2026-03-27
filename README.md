@@ -166,7 +166,7 @@ GOTOOLCHAIN=local GOSUMDB=off go run ./cmd/server
 
 Backend default address:
 
-- `http://localhost:8080`
+- `http://localhost:18080`
 - health check: `GET /healthz`
 
 ### 2. Frontend
@@ -181,7 +181,7 @@ Frontend default address:
 
 - `http://localhost:5173`
 
-The Vite dev server proxies `/api` to `http://localhost:8080` by default.
+The Vite dev server proxies `/api` to `http://localhost:18080` by default.
 
 ## Docker Compose Start
 
@@ -194,7 +194,7 @@ docker compose up --build
 Default addresses:
 
 - frontend: `http://localhost:5173`
-- backend: `http://localhost:8080`
+- backend: `http://localhost:18080`
 - postgres: `localhost:5432`
 - redis: `localhost:6379`
 
@@ -232,7 +232,7 @@ npm run dev
 Health check after backend startup:
 
 ```bash
-curl http://127.0.0.1:8080/healthz
+curl http://127.0.0.1:18080/healthz
 ```
 
 Expected response:

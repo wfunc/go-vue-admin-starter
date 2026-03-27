@@ -39,6 +39,7 @@ const { t, locale } = useI18n()
 const menuItems = computed(() => authStore.menus.filter((item) => !item.hidden))
 const currentTitle = computed(() => t(String(route.meta.titleKey || 'app.name')))
 const currentSection = computed(() => {
+  if (route.path.startsWith('/customer-service')) return t('section.customerService')
   if (route.path.startsWith('/audit')) return t('section.audit')
   if (route.path.startsWith('/system') || route.path.startsWith('/roles') || route.path.startsWith('/menus')) return t('section.system')
   if (route.path.startsWith('/users')) return t('section.user')
